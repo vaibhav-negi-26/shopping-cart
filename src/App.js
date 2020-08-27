@@ -1,9 +1,11 @@
 import React, { useState } from "react"
-import { toast } from "react-toastify"
+import { ToastContainer, toast } from "react-toastify"
 import "bootstrap/dist/css/bootstrap.min.css"
 import "react-toastify/dist/ReactToastify.css"
 import "./App.css"
 import BuyPage from "./Components/BuyPage"
+import Cart from "./Components/Cart"
+import { Container, Row, Col } from "reactstrap"
 
 const App = () => {
   // state
@@ -20,7 +22,7 @@ const App = () => {
         type: "error",
       })
     } else {
-      setCartItem([...setCartItem, item])
+      setCartItem([...cartItem, item])
     }
   }
 
@@ -28,20 +30,30 @@ const App = () => {
   const buyNow = () => {
     setCartItem([])
 
-    toast("Purchase Successful 🎊", {
+    toast("🎉 Purchase Successful 🎉", {
       type: "default",
     })
   }
 
   // remove item
   const removeItem = (item) => {
-    setCartItem([cartItem.filter((singleItem) => singleItem.id !== item.id)])
+    console.log(cartItem)
+    setCartItem(cartItem.filter((singleItem) => singleItem.id !== item.id))
+    console.log(cartItem)
   }
 
   return (
-    <div className="App">
-      <BuyPage addInCart={addInCart} />
-    </div>
+    <Container fluid>
+      <ToastContainer />
+      <Row>
+        <Col md={8}>
+          <BuyPage addInCart={addInCart} />
+        </Col>
+        <Col md={4}>
+          <Cart cartItem={cartItem} buyNow={buyNow} removeItem={removeItem} />
+        </Col>
+      </Row>
+    </Container>
   )
 }
 

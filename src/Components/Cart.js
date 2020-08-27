@@ -13,30 +13,44 @@ import {
 } from "reactstrap"
 
 const Cart = ({ cartItem, buyNow, removeItem }) => {
-  const amount = 0
+  let amount = 0
   cartItem.forEach((e) => {
     amount = parseFloat(e.productPrice) + parseFloat(amount)
   })
 
   return (
     <Container fluid>
-      <h1 className="text-primary">Your Cart</h1>
+      <h1
+        className="font-italic"
+        style={{ color: "white", textShadow: "2px 2px #888888" }}>
+        Your Cart
+      </h1>
 
       {/* cart list group */}
       <ListGroup>
-        {cartItem.map((item) => (
-          <ListGroupItem>
+        {cartItem.map((item, index) => (
+          <ListGroupItem key={index}>
             <Row>
               <Col>
-                <img src={item.TinyImage} alt="tiny_product_img" width={80} />
+                <img
+                  src={item.TinyImage}
+                  alt="tiny_product_img"
+                  height="100%"
+                  width="100%"
+                />
               </Col>
               <Col className="text-center">
-                <h5>{item.productName}</h5>
-                <span>Price :- {item.productPrice}</span>
+                <h5 className="text-uppercase">
+                  <u>{item.productName}</u>
+                </h5>
+                <p>
+                  <b>Price</b>
+                </p>
+                <p>{item.productPrice}</p>
                 <Button
-                  className="text-primary"
+                  color="danger"
                   onClick={() => {
-                    removeItem()
+                    removeItem(item)
                   }}>
                   Remove
                 </Button>
@@ -54,11 +68,13 @@ const Cart = ({ cartItem, buyNow, removeItem }) => {
             Your amount for {cartItem.length} is {amount}
           </CardBody>
           <CardFooter>
-            <Button onClick={buyNow}>Pay Now</Button>
+            <Button color="warning" onClick={buyNow}>
+              Pay Now
+            </Button>
           </CardFooter>
         </Card>
       ) : (
-        <h1 className="text-warning"> Cart is empty </h1>
+        <h4 className="text-danger"> Cart is empty </h4>
       )}
     </Container>
   )
