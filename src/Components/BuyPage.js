@@ -37,6 +37,11 @@ const BuyPage = ({ addInCart }) => {
 
   return (
     <Container>
+      <h1
+        className="font-italic"
+        style={{ color: "white", textShadow: "2px 2px #888888" }}>
+        Product Section
+      </h1>
       <Row>
         {product.map((product, index) => (
           <Col md={6} key={product.id}>

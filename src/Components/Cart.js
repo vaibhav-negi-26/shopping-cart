@@ -19,9 +19,9 @@ const Cart = ({ cartItem, buyNow, removeItem }) => {
   })
 
   return (
-    <Container fluid>
+    <Container fluid className="text-right">
       <h1
-        className="font-italic"
+        className="font-italic mb-md-4"
         style={{ color: "white", textShadow: "2px 2px #888888" }}>
         Your Cart
       </h1>
@@ -40,7 +40,7 @@ const Cart = ({ cartItem, buyNow, removeItem }) => {
                 />
               </Col>
               <Col className="text-center">
-                <h5 className="text-uppercase">
+                <h5 className="text-uppercase text-primary">
                   <u>{item.productName}</u>
                 </h5>
                 <p>
